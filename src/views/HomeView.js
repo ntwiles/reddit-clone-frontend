@@ -1,28 +1,34 @@
 import React from 'react';
 
+import { useParams } from 'react-router-dom';
+
 import { Columns, Container } from "react-bulma-components";
 
-import { ForumSideBar } from '../components/ForumSideBar';
+import { LinksSideBar } from '../components/LinksSideBar';
 import { PostList } from '../components/PostList';
-import { CreateSideBar } from '../components/CreateSideBar';
+import { ForumSideBar } from '../components/ForumSideBar';
+
+function PostListContainer() {
+    let { sortMethod } = useParams();
+    if (!sortMethod) { sortMethod = 'hot' };
+
+    return <PostList key={`sort-${sortMethod}`} sortMethod={sortMethod}/>
+}
 
 export class HomeView extends React.Component {
 
     render() {
-        let sortMethod = this.props.match.params.sortMethod;
-        if (!sortMethod) { sortMethod = 'hot' };
-
         return (
             <Container fluid className="mt-1">
                 <Columns>
                     <Columns.Column>
-                        <ForumSideBar />
+                        <LinksSideBar />
                     </Columns.Column>
                     <Columns.Column size="two-thirds">
-                        <PostList key={`sort-${sortMethod}`} sortMethod={sortMethod}/>
+                        <PostListContainer />
                     </Columns.Column>
                     <Columns.Column>
-                        <CreateSideBar />
+                        <ForumSideBar />
                     </Columns.Column>
                 </Columns>
             </Container>

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Hero, Heading, Columns, Container } from "react-bulma-components";
 
-import { ForumSideBar } from '../components/ForumSideBar';
+import { LinksSideBar } from '../components/LinksSideBar';
 import { PostList } from '../components/PostList';
-import { CreateSideBar } from '../components/CreateSideBar';
+import { ForumSideBar } from '../components/ForumSideBar';
 
 export class ForumView extends React.Component {
 
@@ -21,13 +21,13 @@ export class ForumView extends React.Component {
             <Container fluid className="mt-1">
                 <Columns>
                     <Columns.Column>
-                        <ForumSideBar />
+                        <LinksSideBar />
                     </Columns.Column>
                     <Columns.Column size="two-thirds">
                         <PostList key={`forum-${forumName}`} forumName={forumName}/>
                     </Columns.Column>
                     <Columns.Column>
-                        <CreateSideBar />
+                        <ForumSideBar />
                     </Columns.Column>
                 </Columns>
             </Container>

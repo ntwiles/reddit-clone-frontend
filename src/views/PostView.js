@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Columns, Container, Heading } from "react-bulma-components";
+import { Columns, Container, Heading, Box} from "react-bulma-components";
 
-import { ForumSideBar } from '../components/ForumSideBar';
+import { LinksSideBar } from '../components/LinksSideBar';
 import { CreateSideBar } from '../components/CreateSideBar';
 
 import { useParams } from 'react-router-dom';
@@ -45,10 +45,12 @@ export class PostView extends React.Component {
             <Container fluid className="mt-1">
                 <Columns>
                     <Columns.Column>
-                        <ForumSideBar />
+                        <LinksSideBar />
                     </Columns.Column>
                     <Columns.Column size="two-thirds">
-                        <PostDetails/>
+                        <Box>
+                            <PostDetails/>
+                        </Box>
                     </Columns.Column>
                     <Columns.Column>
                         <CreateSideBar />

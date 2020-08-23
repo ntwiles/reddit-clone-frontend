@@ -9,8 +9,9 @@ import { useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 
 const POSTS = gql`
-    query GetPosts($forumName: String) {
-        posts(forum: $forumName) {
+    query GetPosts($forumName: String, $sortMethod: String) {
+        posts(forum: $forumName sortMethod: $sortMethod) {
+            id
             title
             timePosted
             message
@@ -20,12 +21,12 @@ const POSTS = gql`
     }
 `;
 
-function PostItems() {
-
+function PostItems(props) {
     const { forumName } = useParams();
+    const sortMethod = props.sortMethod;
 
     const { loading, error, data } = useQuery(POSTS, {
-        variables: { forumName }
+        variables: { forumName, sortMethod }
     });
 
     if (loading) return <p>Loading...</p>;
@@ -34,11 +35,11 @@ function PostItems() {
     return data.posts.map(p => (
         <Media>
             <Media.Item position="left">
-                <Image src="https://via.placeholder.com/96" alt="post-image" size={96} />
+                <Image src="https://via.placeholder.com/128" alt="post-image" size={128} />
             </Media.Item>
             <Media.Item>
                 <Content>
-                    <Heading subtitle size={5}><Link to={`/post/${p._id}`}>{p.title}</Link></Heading>
+                    <Heading subtitle size={5}><Link to={`/post/${p.id}`}>{p.title}</Link></Heading>
                     <p>Posted {moment(p.timePosted).fromNow()} in {p.forum}</p>
                     <p>{p.numComments} comment(s)</p>
                 </Content>
@@ -51,7 +52,7 @@ export class PostList extends React.Component {
     render() {
         return (
             <Box>
-                <PostItems/>
+                <PostItems sortMethod={this.props.sortMethod}/>
             </Box>
         );
     }

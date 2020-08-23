@@ -10,9 +10,11 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
 import { HeaderBar } from './components/HeaderBar';
+
 import { HomeView } from './views/HomeView';
 import { PostView } from './views/PostView';
 import { ForumView } from './views/ForumView';
+import { CreatePostView } from './views/CreatePostView';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
@@ -27,15 +29,10 @@ function App() {
           <HeaderBar/>
           <Switch>
             <Route path="/f/:forumName" component={ForumView}/>
-            <Route path="/about">
-              About
-            </Route>
-            <Route path="/users">
-              Users
-            </Route>
             <Route path="/post/:postId" component={PostView} />
-            <Route exact path="/" component={HomeView} />
-            <Route path="/:sortMethod" component={HomeView} />
+            <Route exact path="/home" component={HomeView} />
+            <Route path="/home/:sortMethod" component={HomeView} />
+            <Route path="/create-post" component={CreatePostView} />
           </Switch>
         </Router>
         <Footer className="mt-2"/>
