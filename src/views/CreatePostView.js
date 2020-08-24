@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { Heading, Columns, Form, Tabs} from "react-bulma-components";
+import { Heading, Columns, Form, Tabs, Button} from "react-bulma-components";
 
 export class CreatePostView extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             title: '',
             forum: '',
             message: '',
-            tab: 'Text'
+            tab: 'text'
         }
     }
 
@@ -21,14 +20,42 @@ export class CreatePostView extends React.Component {
         });
     }
 
-    onClickTab = (evt) => {
+    onClickTab = (tab) => {
         this.setState({ 
-            tab: evt.target.text
+            tab: tab
         });
     }
 
     render() {
-        const { title, forum, message } = this.state;
+        const { message, title, forum, url } = this.state;
+
+        let currentTab;
+
+        switch (this.state.tab) {
+            case 'text': {
+                currentTab = (
+                    <Form.Field>
+                        <Form.Control>
+                            <Form.Label>Message</Form.Label>
+                            <Form.Textarea placeholder="Message..." onChange={this.onChange} name="message" value={message}></Form.Textarea>
+                        </Form.Control>
+                    </Form.Field>
+                );
+                break;
+            }
+            case 'image': {
+                currentTab = (
+                    <Form.Field>
+                        <Form.Control>
+                            <Form.Label>Image URL</Form.Label>
+                            <Form.Input type="url" placeholder="http://" onChange={this.onChange} name="url" value={url}/>
+                        </Form.Control>
+                    </Form.Field>
+                );
+                break;
+            }
+        }
+
         return (
                 <Columns centered>
                     <Columns.Column size="one-third">
@@ -45,20 +72,17 @@ export class CreatePostView extends React.Component {
                                 <Form.Input type="text" placeholder="Forum..." onChange={this.onChange} name="forum" value={forum}/>
                             </Form.Control>
                         </Form.Field>
+                        <Form.Label>Content Type</Form.Label>
                         <Tabs>
-                            <Tabs.Tab onClick={this.onClickTab} active={this.state.tab === 'Text'}>
+                            <Tabs.Tab onClick={() => { this.onClickTab('text') }} active={this.state.tab === 'text'}>
                                 Text
                             </Tabs.Tab>
-                            <Tabs.Tab onClick={this.onClickTab} active={this.state.tab === 'Image/Video'}>
-                                Image/Video
+                            <Tabs.Tab onClick={() => { this.onClickTab('image') }} active={this.state.tab === 'image'}>
+                                Image
                             </Tabs.Tab>
                         </Tabs>
-                        <Form.Field>
-                            <Form.Control>
-                                <Form.Label>Message</Form.Label>
-                                <Form.Textarea placeholder="Message..." onChange={this.onChange} name="message" value={message}></Form.Textarea>
-                            </Form.Control>
-                        </Form.Field>
+                        {currentTab}
+                        <Button color="primary">Submit post</Button>
                     </Columns.Column>
                 </Columns>
         );

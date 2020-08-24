@@ -17,7 +17,7 @@ import { ForumView } from './views/ForumView';
 import { CreatePostView } from './views/CreatePostView';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
+  uri: 'http://192.168.0.106:5000/graphql',
   cache: new InMemoryCache()
 });
 
