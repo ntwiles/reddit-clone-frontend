@@ -10,7 +10,7 @@ export default class CreatePanel extends React.Component {
                 <Panel.Header>Create Something</Panel.Header>
                 <Container fluid className="pt-1 pb-1">
                     <Button fullWidth={true} to="/create-post"  color="success" renderAs={Link}>Create a post</Button>
-                    <Button fullwidth={true} className="mt-1">Create a forum</Button>
+                    <Button fullwidth={true} to="/create-forum" renderAs={Link} className="mt-1">Create a forum</Button>
                 </Container>
             </Panel>
         );

@@ -15,7 +15,8 @@ const FORUMS = gql`
     }
 `;
 
-function ForumLinks() {
+function ForumLinks(props) {
+    const {currentForum} = props;
     const { loading, error, data } = useQuery(FORUMS, { errorPolicy: 'all'});
 
     if (loading) return <p>Loading...</p>;
@@ -24,7 +25,7 @@ function ForumLinks() {
         return <p>Error: {error.networkError.message}</p>;
     }
 
-    return data.forums.map(f => <Link to={`/f/${f.name}`}><Menu.List.Item>{f.name}</Menu.List.Item></Link>);
+    return data.forums.map(f => <Menu.List.Item to={`/f/${f.name}`} renderAs={Link} active={f.name === currentForum}>{f.name}</Menu.List.Item>);
 }
 
 export class LinksSideBar extends React.Component {
@@ -35,7 +36,7 @@ export class LinksSideBar extends React.Component {
                 <Panel.Header>My Forums</Panel.Header>
                 <Menu>
                     <Menu.List>
-                        <ForumLinks/>
+                        <ForumLinks currentForum={this.props.currentForum}/>
                     </Menu.List>
                 </Menu>
             </Panel>
@@ -43,7 +44,7 @@ export class LinksSideBar extends React.Component {
                 <Panel.Header>Popular Forums</Panel.Header>
                 <Menu>
                     <Menu.List>
-                        <ForumLinks/>
+                        <ForumLinks currentForum={this.props.currentForum}/>
                     </Menu.List>
                 </Menu>
             </Panel>

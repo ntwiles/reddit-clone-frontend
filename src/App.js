@@ -15,6 +15,7 @@ import { HomeView } from './views/HomeView';
 import { PostView } from './views/PostView';
 import { ForumView } from './views/ForumView';
 import { CreatePostView } from './views/CreatePostView';
+import { CreateForumView } from './views/CreateForumView';
 
 const client = new ApolloClient({
   uri: 'http://192.168.0.106:5000/graphql',
@@ -30,9 +31,11 @@ function App() {
           <Switch>
             <Route path="/f/:forumName" component={ForumView}/>
             <Route path="/post/:postId" component={PostView} />
-            <Route exact path="/home" component={HomeView} />
-            <Route path="/home/:sortMethod" component={HomeView} />
-            <Route path="/create-post" component={CreatePostView} />
+            <Route exact path="/create-post" component={CreatePostView} />
+            <Route exact path="/create-forum" component={CreateForumView} />
+            <Route exact path="/" component={HomeView} />
+            <Route path="/:sortMethod" component={HomeView} />
+
           </Switch>
         </Router>
         <Footer className="mt-2"/>

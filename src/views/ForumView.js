@@ -21,7 +21,7 @@ export class ForumView extends React.Component {
             <Container fluid className="mt-1">
                 <Columns>
                     <Columns.Column>
-                        <LinksSideBar />
+                        <LinksSideBar currentForum={forumName} />
                     </Columns.Column>
                     <Columns.Column size="two-thirds">
                         <PostList key={`forum-${forumName}`} forumName={forumName}/>
