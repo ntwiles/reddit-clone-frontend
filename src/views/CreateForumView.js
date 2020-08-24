@@ -44,7 +44,7 @@ function SubmitButton(props) {
     if (error) { return <p>Error: {error.message}</p>; }
     if (data) {
         const name = data.createForum.name;
-        return <Redirect to={`/forum/${name}`} />; 
+        return <Redirect to={`/f/${name}`} />; 
     }
 
     const newForum = {

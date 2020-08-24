@@ -6,7 +6,7 @@ import { Columns, Container } from "react-bulma-components";
 
 import { LinksSideBar } from '../components/LinksSideBar';
 import { PostList } from '../components/PostList';
-import { ForumSideBar } from '../components/ForumSideBar';
+import { CreateSideBar } from '../components/CreateSideBar';
 
 function PostListContainer() {
     let { sortMethod } = useParams();
@@ -28,7 +28,7 @@ export class HomeView extends React.Component {
                         <PostListContainer />
                     </Columns.Column>
                     <Columns.Column>
-                        <ForumSideBar />
+                        <CreateSideBar />
                     </Columns.Column>
                 </Columns>
             </Container>

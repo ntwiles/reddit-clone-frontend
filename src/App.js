@@ -30,7 +30,7 @@ function App() {
           <HeaderBar/>
           <Switch>
             <Route path="/f/:forumName" component={ForumView}/>
-            <Route path="/post/:postId" component={PostView} />
+            <Route path="/p/:postId" component={PostView} />
             <Route exact path="/create-post" component={CreatePostView} />
             <Route exact path="/create-forum" component={CreateForumView} />
             <Route exact path="/" component={HomeView} />

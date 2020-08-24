@@ -39,7 +39,7 @@ function PostItems(props) {
             </Media.Item>
             <Media.Item>
                 <Content>
-                    <Heading subtitle size={5}><Link to={`/post/${p.id}`}>{p.title}</Link></Heading>
+                    <Heading subtitle size={5}><Link to={`/p/${p.id}`}>{p.title}</Link></Heading>
                     <p>Posted {moment(p.timePosted).fromNow()} in {p.forum}</p>
                     <p>{p.numComments} comment(s)</p>
                 </Content>

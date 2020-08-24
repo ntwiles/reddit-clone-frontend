@@ -56,7 +56,7 @@ function SubmitButton(props) {
     if (data) {
         const id = data.createPost.id;
         console.log(id);
-        return <Redirect to={`/post/${id}`} />; 
+        return <Redirect to={`/p/${id}`} />; 
     }
 
     const newPost = {
