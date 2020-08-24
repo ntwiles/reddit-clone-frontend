@@ -8,7 +8,7 @@ export class ForumSideBar extends React.Component {
         return (
             <section>
                 <CreatePanel/>
-                <ForumPanel/>
+                <ForumPanel forumName={this.props.forumName}/>
             </section>
         );
     }

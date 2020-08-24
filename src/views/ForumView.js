@@ -27,7 +27,7 @@ export class ForumView extends React.Component {
                         <PostList key={`forum-${forumName}`} forumName={forumName}/>
                     </Columns.Column>
                     <Columns.Column>
-                        <ForumSideBar />
+                        <ForumSideBar forumName={forumName}/>
                     </Columns.Column>
                 </Columns>
             </Container>
