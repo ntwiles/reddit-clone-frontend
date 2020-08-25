@@ -8,24 +8,39 @@ import { LinksSideBar } from '../components/LinksSideBar';
 import { PostList } from '../components/PostList';
 import { CreateSideBar } from '../components/CreateSideBar';
 
-function PostListContainer() {
+import { gql, useQuery } from '@apollo/client';
+
+const POSTS = gql`
+    query GetPosts($forumName: String, $sortMethod: String) {
+        posts(forum: $forumName sortMethod: $sortMethod) {
+            id
+            title
+            timePosted
+            message
+            numComments
+            forum
+        }
+    }
+`;
+
+
+export function HomeContainer() {
     let { sortMethod } = useParams();
     if (!sortMethod) { sortMethod = 'hot' };
 
-    return <PostList key={`sort-${sortMethod}`} sortMethod={sortMethod}/>
-}
+    const { loading, error, data } = useQuery(POSTS, { variables: { sortMethod } });
 
-export class HomeContainer extends React.Component {
+    if (data) {
+        const posts = data.posts;
 
-    render() {
         return (
             <Container fluid className="mt-1">
                 <Columns>
                     <Columns.Column>
-                        <LinksSideBar />
+                        <LinksSideBar/>
                     </Columns.Column>
                     <Columns.Column size="two-thirds">
-                        <PostListContainer />
+                        <PostList key={`sort-${sortMethod}`} posts={posts}/>
                     </Columns.Column>
                     <Columns.Column>
                         <CreateSideBar />
@@ -34,4 +49,6 @@ export class HomeContainer extends React.Component {
             </Container>
         );
     }
+
+    return null;
 }
