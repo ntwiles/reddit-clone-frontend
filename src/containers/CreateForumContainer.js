@@ -41,7 +41,7 @@ export class CreateForumContainer extends React.Component {
         const field = evt.target.name;
 
         if (value && this.state.missingFields.includes(field)) {
-            const newMissingFields = this.state.missingFields.filter(f => f != field);
+            const newMissingFields = this.state.missingFields.filter(f => f !== field);
             this.setState({ missingFields: newMissingFields});
         }
 

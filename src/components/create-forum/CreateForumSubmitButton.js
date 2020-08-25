@@ -18,7 +18,7 @@ const CREATE_FORUM = gql`
 `;
 
 export function CreateForumSubmitButton(props) {
-    const {name, rules, parent, onClick} = props;
+    const { name, rules, onClick} = props;
 
     const [createForum, { loading, error, data }] = useMutation(
         CREATE_FORUM, 
@@ -31,11 +31,6 @@ export function CreateForumSubmitButton(props) {
         const name = data.createForum.name;
         return <Redirect to={`/f/${name}`} />; 
     }
-
-    const newForum = {
-        name: name,
-        rules: rules,
-    };
 
     return (
         <Form.Field>
