@@ -29,7 +29,6 @@ function onSubmitClicked(newForum, createForum, parent) {
         createForum({ variables: newForum});
     else {
         parent.setState({missingFields: missingFields});
-        console.log(parent.state.missingFields);
     }
 }
 
