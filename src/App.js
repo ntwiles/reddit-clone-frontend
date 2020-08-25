@@ -35,7 +35,6 @@ function App() {
             <Route exact path="/create-forum" component={CreateForumContainer} />
             <Route exact path="/" component={HomeContainer} />
             <Route path="/:sortMethod" component={HomeContainer} />
-
           </Switch>
         </Router>
         <Footer className="mt-2"/>
