@@ -15,7 +15,7 @@ function PostListContainer() {
     return <PostList key={`sort-${sortMethod}`} sortMethod={sortMethod}/>
 }
 
-export class HomeView extends React.Component {
+export class HomeContainer extends React.Component {
 
     render() {
         return (

@@ -73,7 +73,7 @@ function SubmitButton(props) {
         color="primary">Submit post</Button>);
 }
 
-export class CreatePostView extends React.Component {
+export class CreatePostContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

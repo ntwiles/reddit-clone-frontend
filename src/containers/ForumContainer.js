@@ -6,7 +6,7 @@ import { LinksSideBar } from '../components/LinksSideBar';
 import { PostList } from '../components/PostList';
 import { ForumSideBar } from '../components/ForumSideBar';
 
-export class ForumView extends React.Component {
+export class ForumContainer extends React.Component {
 
     render() {
         let { forumName } = this.props.match.params;

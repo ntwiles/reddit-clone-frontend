@@ -57,7 +57,7 @@ function SubmitButton(props) {
         color="primary">Create forum</Button>);
 }
 
-export class CreateForumView extends React.Component {
+export class CreateForumContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

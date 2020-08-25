@@ -11,14 +11,14 @@ import { ApolloProvider } from '@apollo/client';
 
 import { HeaderBar } from './components/HeaderBar';
 
-import { HomeView } from './views/HomeView';
-import { PostView } from './views/PostView';
-import { ForumView } from './views/ForumView';
-import { CreatePostView } from './views/CreatePostView';
-import { CreateForumView } from './views/CreateForumView';
+import { HomeContainer } from './containers/HomeContainer';
+import { PostContainer } from './containers/PostContainer';
+import { ForumContainer } from './containers/ForumContainer';
+import { CreatePostContainer } from './containers/CreatePostContainer';
+import { CreateForumContainer } from './containers/CreateForumContainer';
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'http://localhost:5000/graphql',
   cache: new InMemoryCache()
 });
 
@@ -29,12 +29,12 @@ function App() {
         <Router>
           <HeaderBar/>
           <Switch>
-            <Route path="/f/:forumName" component={ForumView}/>
-            <Route path="/p/:postId" component={PostView} />
-            <Route exact path="/create-post" component={CreatePostView} />
-            <Route exact path="/create-forum" component={CreateForumView} />
-            <Route exact path="/" component={HomeView} />
-            <Route path="/:sortMethod" component={HomeView} />
+            <Route path="/f/:forumName" component={ForumContainer}/>
+            <Route path="/p/:postId" component={PostContainer} />
+            <Route exact path="/create-post" component={CreatePostContainer} />
+            <Route exact path="/create-forum" component={CreateForumContainer} />
+            <Route exact path="/" component={HomeContainer} />
+            <Route path="/:sortMethod" component={HomeContainer} />
 
           </Switch>
         </Router>

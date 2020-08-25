@@ -39,7 +39,7 @@ function PostDetails() {
     );
 }
 
-export class PostView extends React.Component {
+export class PostContainer extends React.Component {
     render() {
         return (
             <Container fluid className="mt-1">
