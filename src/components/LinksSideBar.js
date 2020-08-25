@@ -1,10 +1,6 @@
 import React from 'react';
-
 import { Link } from "react-router-dom";
-import { Panel, Menu } from "react-bulma-components";
-
-import './LinksSideBar.scss';
-
+import { Panel, Menu, Content } from "react-bulma-components";
 import { useQuery, gql } from '@apollo/client';
 
 const FORUMS = gql`
@@ -15,39 +11,42 @@ const FORUMS = gql`
     }
 `;
 
-function ForumLinks(props) {
+export function LinksSideBar(props) {
     const {currentForum} = props;
-    const { loading, error, data } = useQuery(FORUMS, { errorPolicy: 'all'});
+    const { loading, error, data } = useQuery(FORUMS);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) {
-        return <p>Error: {error.networkError.message}</p>;
-    }
+    if (loading) return <Content>Loading...</Content>;
+    if (error) return <Content>Error: {error.networkError.message}</Content>
 
-    return data.forums.map(f => <Menu.List.Item to={`/f/${f.name}`} renderAs={Link} active={f.name === currentForum}>{f.name}</Menu.List.Item>);
-}
+    const forums = data.forums.map(f => (
+            <Menu.List.Item 
+                to={`/f/${f.name}`} 
+                renderAs={Link} 
+                active={f.name === currentForum}
+            >{f.name}</Menu.List.Item>
+        )
+    );
 
-export class LinksSideBar extends React.Component {
-    render() {
+    if (data) {
         return (
             <section>
-            <Panel>
-                <Panel.Header>My Forums</Panel.Header>
-                <Menu>
-                    <Menu.List>
-                        <ForumLinks currentForum={this.props.currentForum}/>
-                    </Menu.List>
-                </Menu>
-            </Panel>
-            <Panel>
-                <Panel.Header>Popular Forums</Panel.Header>
-                <Menu>
-                    <Menu.List>
-                        <ForumLinks currentForum={this.props.currentForum}/>
-                    </Menu.List>
-                </Menu>
-            </Panel>
+                <Panel>
+                    <Panel.Header>My Forums</Panel.Header>
+                    <Menu>
+                        <Menu.List>
+                            {forums}
+                        </Menu.List>
+                    </Menu>
+                </Panel>
+                <Panel>
+                    <Panel.Header>Popular Forums</Panel.Header>
+                    <Menu>
+                        <Menu.List>
+                            {forums}
+                        </Menu.List>
+                    </Menu>
+                </Panel>
             </section>
-        );
+        )
     }
 }
